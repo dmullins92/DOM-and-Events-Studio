@@ -21,6 +21,9 @@ window.addEventListener("load", function() {
 
     function moveShuttleDown () {
         spaceShuttleHeight.innerHTML = Number(spaceShuttleHeight.innerHTML) - 10000;
+        if (spaceShuttleHeight.innerHTML < 0) {
+            spaceShuttleHeight.innerHTML = Number(0);
+        }
     }
 
     takeoffButton.addEventListener("click", function() {
@@ -28,8 +31,8 @@ window.addEventListener("load", function() {
         if (response) {
             flightStatus.innerHTML = 'Shuttle in flight.';
             shuttleBackground.style.backgroundColor = 'blue';
-            spaceShuttleHeight.innerHTML = Number(spaceShuttleHeight.innerHTML) + 10000;
-
+            // spaceShuttleHeight.innerHTML = Number(spaceShuttleHeight.innerHTML) + 10000;
+            moveShuttleUp();
             upButton.addEventListener('click', moveShuttleUp);
         
             downButton.addEventListener('click', moveShuttleDown);
@@ -48,7 +51,7 @@ window.addEventListener("load", function() {
         window.alert('The shuttle is landing. Landing gear engaged.');
         flightStatus.innerHTML = 'The shuttle has landed.';
         shuttleBackground.style.backgroundColor = 'green';
-        spaceShuttleHeight.innerHTML = 0;
+        spaceShuttleHeight.innerHTML = Number(0);
 
         upButton.removeEventListener('click', moveShuttleUp);
         downButton.removeEventListener('click', moveShuttleDown);
